@@ -37,6 +37,12 @@ TMDB_API_KEY=SuaChaveDeAPIDoTMDB
 npm install
 ```
 
+- Inicie o Mongodb com Docker Compose:
+Execute o arquivo docker-compose.yml no diretório raiz do projeto 
+```
+docker compose  -f "docker-compose.yml" up -d --build mongodb
+```
+
 - Comandos Úteis para rodar localmente
 ```
 npm start
@@ -56,7 +62,7 @@ TMDB_API_KEY=SuaChaveDeAPIDoTMDB
 - Inicie os serviços do Docker com Docker Compose:
 Execute o arquivo docker-compose.yml no diretório raiz do projeto 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 - Acesse a documentação da API:
