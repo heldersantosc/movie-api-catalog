@@ -1,0 +1,20 @@
+services:
+  api_catalog:
+    build: .
+    container_name: api_catalog
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/filmesdb  
+    links:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db  
