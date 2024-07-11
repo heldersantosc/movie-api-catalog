@@ -10,9 +10,17 @@ services:
       - DB_URL=mongodb://mongodb:27017/filmesdb
     links:
       - mongodb
+    networks:
+      - microservices-network
 
   mongodb:
     image: mongo
     container_name: mongodb
     ports:
       - "27017:27017"
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    name: microservices-network
