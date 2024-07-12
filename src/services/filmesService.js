@@ -1,5 +1,5 @@
 const axios = require("axios");
-const Filme = require("../models/filme");
+const { Filme } = require("../models/filmeModel");
 
 const tmdbApiKey = process.env.TMDB_API_KEY;
 const tmdbApiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${tmdbApiKey}&language=pt-BR`;
@@ -10,31 +10,31 @@ async function listarFilmesPopulares() {
 }
 
 async function salvarFilme(filmeData) {
-  const novoFilme = new Filme(filmeData);
-  return await novoFilme.save();
+  return await Filme.create(filmeData);
 }
 
 async function deletarFilme(id) {
-  await Filme.findOneAndDelete({ id: id });
+  await Filme.destroy({ where: { id } });
 }
 
 async function listarFilmesFavoritos() {
-  return await Filme.find({});
+  return await Filme.findAll();
 }
 
 async function substituirFilme(id, novoFilme) {
-  return await Filme.findOneAndReplace({ id: id }, novoFilme, {
-    includeResultMetadata: true,
-    returnDocument: "before",
-    new: true,
+  const [_, [filmeAtualizado]] = await Filme.update(novoFilme, {
+    where: { id },
+    returning: true,
   });
+  return filmeAtualizado;
 }
 
 async function atualizarFilme(id, updateData) {
-  return await Filme.findOneAndUpdate({ id: id }, updateData, {
-    includeResultMetadata: true,
-    new: true,
+  const [_, [filmeAtualizado]] = await Filme.update(updateData, {
+    where: { id },
+    returning: true,
   });
+  return filmeAtualizado;
 }
 
 module.exports = {

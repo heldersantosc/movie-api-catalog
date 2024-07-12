@@ -5,19 +5,23 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - mongodb
+      - postgres
     environment:
-      - DB_URL=mongodb://mongodb:27017/filmesdb
+      - POSTGRES_URL=postgres
     links:
-      - mongodb
+      - postgres
     networks:
       - microservices-network
 
-  mongodb:
-    image: mongo
-    container_name: mongodb
+  postgres:
+    image: postgres:13
+    container_name: postgres
     ports:
-      - "27017:27017"
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=senha
+      - POSTGRES_DB=filmesdb
     networks:
       - microservices-network
 
