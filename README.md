@@ -1,6 +1,7 @@
 # API de Catálogo de Filmes
+**Componente de Microsserviço**
 
-Esta é uma API de Catálogo Filmes que permite listar filmes populares do TMDB, adicionar filmes favoritos, atualizar informações de filmes, deletar filmes e listar seus filmes favoritos. A API utiliza Node.js, Express, PostgreSQL e Swagger para documentação.
+A API utiliza Node.js, Express, PostgreSQL e Swagger para documentação.
 
 ## Instruções de Instalação
 
