@@ -69,3 +69,5 @@ docker compose up -d
 Acesse o Swagger UI para visualizar e testar a API em http://localhost:3000/api-docs.
 
 
+## 1.3. Arquitura dos serviços ##
+![Arquitetura de serviços](./docs/arquitetura.jpg)
