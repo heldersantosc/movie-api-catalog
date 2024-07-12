@@ -1,14 +1,13 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
 const POSTGRES_DB = process.env.POSTGRES_DB;
-const POSTGRES_URL = process.env.POSTGRES_URL;
+const DATABASE_URL = process.env.DATABASE_URL;
 const POSTGRES_USER = process.env.POSTGRES_USER;
 const POSTGRES_PASSWORD = process.env.POSTGRES_PASSWORD;
 
-const sequelize = new Sequelize(POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, {
-  host: POSTGRES_URL,
-  dialect: "postgres",
-});
+const sequelize = new Sequelize(
+  `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${DATABASE_URL}:5432/${POSTGRES_DB}`
+);
 
 const Filme = sequelize.define(
   "Filme",
@@ -45,8 +44,4 @@ const Filme = sequelize.define(
   }
 );
 
-sequelize.sync().then(() => {
-  console.log("Conectado ao Postgres!");
-});
-
-module.exports = { Filme };
+module.exports = { Filme, sequelize };

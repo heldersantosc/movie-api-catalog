@@ -7,7 +7,7 @@ services:
     depends_on:
       - postgres
     environment:
-      - POSTGRES_URL=postgres
+      - DATABASE_URL=postgres
     links:
       - postgres
     networks:
@@ -15,7 +15,7 @@ services:
 
   postgres:
     image: postgres:13
-    container_name: postgres
+    container_name: postgresdb
     ports:
       - "5432:5432"
     environment:
